@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@page import="com.levi9.code9.model.Category"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,6 +14,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
+				<th></th>
 				<th></th>
 			</tr>
 			<c:forEach items="${categories}" var="category">

@@ -17,6 +17,7 @@
 					<form:hidden path="id" />
 					<form:label path="name">Name </form:label>
 					<form:input path="name" />
+					<form:errors path="name"/>
 				</fieldset>
 				<p>
 					<button type="submit" name="save">Submit</button>
