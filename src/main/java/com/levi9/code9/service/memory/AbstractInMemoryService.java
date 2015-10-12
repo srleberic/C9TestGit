@@ -24,7 +24,7 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
 	 */
 	protected final AtomicLong sequence = new AtomicLong(1);
 
-	/* (non-Javadoc)
+	/* 
 	 * @see com.levi9.code9.service.CrudService#findById(java.lang.Long)
 	 */
 	@Override
@@ -32,7 +32,7 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
 		return map.get(id);
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see com.levi9.code9.service.CrudService#findAll()
 	 */
 	@Override
@@ -40,7 +40,7 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
 		return new ArrayList<>(map.values());
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see com.levi9.code9.service.CrudService#save(com.levi9.code9.model.AbstractBaseEntity)
 	 */
 	@Override
@@ -52,7 +52,7 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
 		return t;
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see com.levi9.code9.service.CrudService#remove(java.lang.Long)
 	 */
 	@Override
