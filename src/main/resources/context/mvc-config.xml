@@ -28,5 +28,7 @@
 	</bean>
 	
 	<mvc:view-controller path="/home" view-name="home" />
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
 		
 </beans>

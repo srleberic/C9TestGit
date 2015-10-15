@@ -3,18 +3,16 @@
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
 
 <h2>Add/Edit Category</h2>
-<div id="addEditCategory">
-	<c:url var="action" value="/categories"/>
-	<form:form id="formCategory" action="${action}" method="post" modelAttribute="category">
-		<fieldset>
-			<form:hidden path="id" />
-			<form:label path="name">Name </form:label>
-			<form:input path="name" />
-			<form:errors path="name"/>
-		</fieldset>
-		<p>
-			<button type="submit" name="save">Submit</button>
-			<button type="submit" name="cancel">Cancel</button>
-		</p>
-	</form:form>
-</div>
+<c:url var="action" value="/categories"/>
+<form:form id="formCategory" action="${action}" method="post" modelAttribute="category">
+	<fieldset>
+		<form:hidden path="id" />
+		<form:label path="name">Name </form:label>
+		<form:input path="name" cssErrorClass="error"/>
+		<form:errors path="name" cssClass="errorMessage"/>
+	</fieldset>
+	<div class="highlightcolorBlack">
+		<button type="submit" name="save" class="button">Submit</button>
+		<button type="submit" name="cancel" class="button">Cancel</button>
+	</div>
+</form:form>

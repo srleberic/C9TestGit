@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
 
 <h2>Categories</h2>
-<div id="categories">
+<div class="dataTable">
 	<table>
 		<tr>
 			<th>ID</th>
@@ -15,13 +15,15 @@
 			<tr>
 				<td><c:out value="${category.id}"/></td>
 				<td><c:out value="${category.name}"/></td>
-				<td><a href="<c:url value="/categories/edit/${category.id}" />">Edit</a></td>
-				<td><a href="<c:url value="/categories/remove/${category.id}" />">Remove</a></td>
+				<td class="highlightcolorBlack">
+					<a href="<c:url value="/categories/edit/${category.id}" />">Edit</a></td>
+				<td class="highlightcolorBlack">
+					<a href="<c:url value="/categories/remove/${category.id}" />">Remove</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 </div>
 
-<div id="newCategory">
+<div class="highlightcolorBlack">
 	<a href="<c:url value="/categories/new" />">Create New Category</a>
 </div>
