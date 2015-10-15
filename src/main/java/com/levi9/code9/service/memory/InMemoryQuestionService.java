@@ -32,6 +32,9 @@ public class InMemoryQuestionService extends AbstractInMemoryService<Question>
 	@Override
 	public void addAnswer(Question question) {
 		Answer answer = new Answer();
+		if (question.getAnswers() == null) {
+			question.setAnswers(new ArrayList<Answer>());
+		}
 		answer.setId(new Long(question.getAnswers().size()));
 		question.getAnswers().add(answer);
 	}

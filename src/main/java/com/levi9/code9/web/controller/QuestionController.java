@@ -7,18 +7,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.levi9.code9.model.Category;
 import com.levi9.code9.model.Question;
 import com.levi9.code9.service.CategoryService;
 import com.levi9.code9.service.QuestionService;
+import com.levi9.code9.web.validator.QuestionAnswersValidator;
 
 /**
  * @author Srle
@@ -36,6 +41,9 @@ public class QuestionController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private QuestionAnswersValidator questionAnswersValidator;
 	
 	/**
 	 * Retrieves all questions per category and returns them as model attribute
@@ -107,9 +115,18 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(params = "save", method = RequestMethod.POST)
-	public String save(Question question) {
-		questionService.save(question);
-		return "redirect:questions";
+	public String save(@Valid Question question, BindingResult bindingResult, 
+			Model model) {
+		questionAnswersValidator.validate(question, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			questionService.save(question);
+			return "redirect:questions";
+		} else {
+			model.addAttribute("question", question);
+			model.addAttribute("cateogries", categoryService.findAll());
+			return "addEditQuestion";
+		}
+		
 	}
 	
 	/**
@@ -118,5 +135,20 @@ public class QuestionController {
 	@RequestMapping(params = "cancel", method = RequestMethod.POST)
 	public String cancel() {
 		return "redirect:questions";
+	}
+	
+	@RequestMapping(params = "addAnswer", method = RequestMethod.POST)
+	public String addAnswer(Question question, Model model) {
+		questionService.addAnswer(question);
+		model.addAttribute("categories", categoryService.findAll());
+		return "addEditQuestion";
+	}
+	
+	@RequestMapping(params = "removeAnswer", method = RequestMethod.POST)
+	public String removeAnswer(Question question, 
+			@RequestParam(value = "removeAnswer") Long answerId, Model model) {
+		questionService.removeAnswer(question, answerId);
+		model.addAttribute("categories", categoryService.findAll());
+		return "addEditQuestion";
 	}
 }

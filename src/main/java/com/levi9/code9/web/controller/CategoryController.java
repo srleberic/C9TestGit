@@ -2,9 +2,12 @@ package com.levi9.code9.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,9 +48,15 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(params = "save", method = RequestMethod.POST)
-	public String post(Category category) {
-		categoryService.save(category);
-		return "redirect:categories";
+	public String post(@Valid Category category, BindingResult bindingResult, 
+			Model model) {
+		if (!bindingResult.hasErrors()) {
+			categoryService.save(category);
+			return "redirect:categories";
+		} else {
+			model.addAttribute("category", category);
+			return "addEditCategory";
+		}
 	}
 	
 	@RequestMapping(params = "cancel", method = RequestMethod.GET)
