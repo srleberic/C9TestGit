@@ -32,22 +32,20 @@ public class QuestionAnswersValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		if (target != null && supports(target.getClass())) {
 			Question question = (Question) target;
-			if (question.getAnswers() != null) {
-				if (question.getAnswers().size() < MIN_NUM_OF_ANSWERS) {
-					errors.rejectValue(ANSWERS_FIELD_NAME, MIN_TWO_ANSWERS_MESSAGE_KEY, 
-							"Question must have at least two answers.");
-				} else {
-					int correctCount = 0;
-					for (Answer a : question.getAnswers()) {
-						if (a.isCorrect()) {
-							correctCount++;
-							break;
-						}
+			if (question.getAnswers() == null || question.getAnswers().size() < MIN_NUM_OF_ANSWERS) {
+				errors.rejectValue(ANSWERS_FIELD_NAME, MIN_TWO_ANSWERS_MESSAGE_KEY, 
+						"Question must have at least two answers.");
+			} else {
+				int correctCount = 0;
+				for (Answer a : question.getAnswers()) {
+					if (a.isCorrect()) {
+						correctCount++;
+						break;
 					}
-					if (correctCount < MIN_NUM_OF_CORRECT_ANSWERS) {
-						errors.rejectValue(ANSWERS_FIELD_NAME, MIN_ONE_CORRECT_ANSWER_MESSAGE_KEY, 
-								"Question must have at least one correct answer.");
-					}
+				}
+				if (correctCount < MIN_NUM_OF_CORRECT_ANSWERS) {
+					errors.rejectValue(ANSWERS_FIELD_NAME, MIN_ONE_CORRECT_ANSWER_MESSAGE_KEY, 
+							"Question must have at least one correct answer.");
 				}
 			}
 		}
