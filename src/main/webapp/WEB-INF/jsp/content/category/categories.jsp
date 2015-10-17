@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
 
-<h2>Categories</h2>
+<h2>
+	<fmt:message key="page.categories.header"/>
+</h2>
 <div class="dataTable">
 	<table>
 		<tr>
-			<th>ID</th>
-			<th>Name</th>
+			<th><fmt:message key="common.label.id"/></th>
+			<th><fmt:message key="common.label.name"/></th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -16,14 +18,17 @@
 				<td><c:out value="${category.id}"/></td>
 				<td><c:out value="${category.name}"/></td>
 				<td class="highlightcolorBlack">
-					<a href="<c:url value="/categories/edit/${category.id}" />">Edit</a></td>
+					<a href="<c:url value="/categories/edit/${category.id}" />"
+					class="button"><fmt:message key="common.action.edit"/></a></td>
 				<td class="highlightcolorBlack">
-					<a href="<c:url value="/categories/remove/${category.id}" />">Remove</a></td>
+					<a href="<c:url value="/categories/remove/${category.id}" />"
+					class="button"><fmt:message key="common.action.remove"/></a></td>
 			</tr>
 		</c:forEach>
 	</table>
 </div>
 
 <div class="highlightcolorBlack">
-	<a href="<c:url value="/categories/new" />">Create New Category</a>
+	<a href="<c:url value="/categories/new" />" class="button">
+		<fmt:message key="page.categories.action.addNewCategory"/></a>
 </div>
