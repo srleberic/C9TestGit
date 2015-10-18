@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+		<meta charset="utf-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><fmt:message key="${title}"/></title>
 		<link href="<c:url value="/css/screen.css"/>" rel="stylesheet"
@@ -24,7 +25,9 @@
 				<a href="<c:url value="/home?lang=sr" />"><fmt:message key="common.header.language.sr"/></a>
 				<a href="<c:url value="/home?lang=en" />"><fmt:message key="common.header.language.en"/></a>
 			</div>
-			<h1>Taster</h1>
+			<h1>
+				<fmt:message key="common.header.title" />
+			</h1>
 			<ul id="mainMenu">
 				<li><a class="dashBoard" 
 					href="<c:url value="/home"/>"><fmt:message key="common.menu.dashboard"/></a></li>
@@ -32,6 +35,8 @@
 					href="<c:url value="/categories"/>"><fmt:message key="common.menu.categories"/></a></a></li>
 				<li><a class="questions" 
 					href="<c:url value="/questions"/>"><fmt:message key="common.menu.questions"/></a></a></li>
+				<li><a class="testTemplates" 
+					href="<c:url value="/tests"/>"><fmt:message key="common.menu.tests"/></a></a></li>
 			</ul>
 		</header>
 		<section id="mainContent">
