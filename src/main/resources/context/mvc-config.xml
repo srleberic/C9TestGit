@@ -14,6 +14,7 @@
 			<list>
 				<bean class="com.levi9.code9.web.converter.StringToCategoryConverter"/>
 				<bean class="com.levi9.code9.web.converter.StringToDateConverter"/>
+				<bean class="com.levi9.code9.web.converter.DateToStringConverter"/>
 			</list>
 		</property>
 	</bean>

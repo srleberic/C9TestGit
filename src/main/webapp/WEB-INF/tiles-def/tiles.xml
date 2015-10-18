@@ -39,5 +39,9 @@
 		<put-attribute name="title" value="page.addEditTest.title"/>
 		<put-attribute name="content" value="/WEB-INF/jsp/content/test/addEditTest.jsp"/>
 	</definition>
+	<definition name="addRemoveQuestions" extends="mainLayout">
+		<put-attribute name="title" value="page.addRemoveQuestions.title"/>
+		<put-attribute name="content" value="/WEB-INF/jsp/content/test/addRemoveQuestions.jsp"/>
+	</definition>
 	
 </tiles-definitions>
