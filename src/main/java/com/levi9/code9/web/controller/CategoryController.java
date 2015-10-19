@@ -59,7 +59,7 @@ public class CategoryController {
 		}
 	}
 	
-	@RequestMapping(params = "cancel", method = RequestMethod.GET)
+	@RequestMapping(params = "cancel", method = RequestMethod.POST)
 	public String cancel() {
 		return "redirect:categories";
 	}

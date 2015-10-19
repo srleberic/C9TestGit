@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
 
-<h2>Welcome to Taster!</h2>
+<h2><fmt:message key="page.home.header"/> </h2>
