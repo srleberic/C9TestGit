@@ -5,6 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 		
-	<context:component-scan base-package="com.levi9.code9" />
+	<context:component-scan base-package="com.levi9.code9.repository" />
+	<context:component-scan base-package="com.levi9.code9.service.impl" />
+	<context:component-scan base-package="com.levi9.code9.web" />
 		
 </beans>

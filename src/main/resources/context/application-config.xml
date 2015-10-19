@@ -7,4 +7,7 @@
 	
 	<import resource="classpath:/context/mvc-config.xml"/>
 	
+	<!-- Persistence -->
+	<import resource="classpath:/context/persistence-config.xml"/>
+	
 </beans>
