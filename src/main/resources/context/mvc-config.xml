@@ -4,7 +4,7 @@
 	xmlns:p="http://www.springframework.org/schema/p" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 		
 	<mvc:annotation-driven conversion-service="conversionService"/>
 	
@@ -13,6 +13,8 @@
 		<property name="converters">
 			<list>
 				<bean class="com.levi9.code9.web.converter.StringToCategoryConverter"/>
+				<bean class="com.levi9.code9.web.converter.StringToDateConverter"/>
+				<bean class="com.levi9.code9.web.converter.DateToStringConverter"/>
 			</list>
 		</property>
 	</bean>
