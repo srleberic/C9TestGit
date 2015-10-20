@@ -46,7 +46,7 @@ public class JdbcTestRepository implements TestRepository {
 		TestRowCallbackHandler testRowCallbackHandler = new TestRowCallbackHandler();
 		jdbcTemplate.query("select t.id, t.name, t.create_date, t.created_by, "
 				+ "q.id, q.content, c.id, c.name "
-				+ "from test_question tq "
+				+ "from test_questions tq "
 				+ "left join question q on tq.question_id = q.id "
 				+ "right join test t on tq.test_id = t.id "
 				+ "left join category c on q.category_id = c.id", 
@@ -59,7 +59,7 @@ public class JdbcTestRepository implements TestRepository {
 		TestRowCallbackHandler testRowCallbackHandler = new TestRowCallbackHandler();
 		jdbcTemplate.query("select t.id, t.name, t.create_date, t.created_by, "
 				+ "q.id, q.content, c.id, c.name "
-				+ "from test_question tq "
+				+ "from test_questions tq "
 				+ "left join question q on tq.question_id = q.id "
 				+ "right join test t on tq.test_id = t.id "
 				+ "left join category c on q.category_id = c.id "
