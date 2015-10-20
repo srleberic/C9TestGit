@@ -3,6 +3,7 @@
  */
 package com.levi9.code9.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,6 +36,11 @@ public class Question extends AbstractBaseEntity {
 	 */
 	@Valid
 	private List<Answer> answers;
+	
+	public Question() {
+		super();
+		answers = new ArrayList<>();
+	}
 
 	/**
 	 * @return the content
