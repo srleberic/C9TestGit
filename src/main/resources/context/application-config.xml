@@ -10,4 +10,7 @@
 	<!-- Persistence -->
 	<import resource="classpath:/context/persistence-config.xml"/>
 	
+	<!-- Security -->
+	<import resource="classpath:/context/spring-security.xml"/>
+	
 </beans>

@@ -22,6 +22,8 @@
 		<header>
 			<div class="top darkNoise">
 				<a href="http://www.levi9.com" target="_blank">Levi9 IT Services</a>
+				<a href="<c:url value="j_spring_security_logout" />"><fmt:message
+					key="common.logout" /></a>
 				<a href="<c:url value="/home?lang=sr" />"><fmt:message key="common.header.language.sr"/></a>
 				<a href="<c:url value="/home?lang=en" />"><fmt:message key="common.header.language.en"/></a>
 			</div>
