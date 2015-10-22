@@ -5,6 +5,8 @@ package com.levi9.code9.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,8 @@ public class TestServiceImpl implements TestService {
 	 * @see com.levi9.code9.service.CrudService#findById(java.lang.Long)
 	 */
 	@Override
-	public Test findById(Long id) {
-		return testRepository.findById(id);
+	public Test findOne(Long id) {
+		return testRepository.findOne(id);
 	}
 
 	/* (non-Javadoc)
@@ -42,6 +44,7 @@ public class TestServiceImpl implements TestService {
 	 * @see com.levi9.code9.service.CrudService#save(com.levi9.code9.model.AbstractBaseEntity)
 	 */
 	@Override
+	@Transactional
 	public Test save(Test test) {
 		return testRepository.save(test);
 	}
@@ -51,13 +54,13 @@ public class TestServiceImpl implements TestService {
 	 */
 	@Override
 	public void remove(Long id) throws IllegalArgumentException {
-		Test test = testRepository.findById(id);
+		Test test = testRepository.findOne(id);
 		if (test == null) {
 			throw new IllegalArgumentException(String.format(
 							"Test with id=%d does not exist.",
 							id));
 		}
-		testRepository.remove(id);
+		testRepository.delete(id);
 	}
 
 }

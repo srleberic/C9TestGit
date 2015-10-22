@@ -59,7 +59,7 @@ public class QuestionController {
 		List<Question> uncategorizedQuestions = questionService.findAll();
 		
 		for (Category c : categories) {
-			List<Question> questions = questionService.findByCategoryId(c.getId());
+			List<Question> questions = questionService.findByCategory(c);
 			if (!questions.isEmpty()) {
 				uncategorizedQuestions.removeAll(questions);
 				retVal.put(c.getName(), questions);
@@ -97,7 +97,7 @@ public class QuestionController {
 	 */
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String getEdit(@PathVariable Long id, Model model) {
-		model.addAttribute("question", questionService.findById(id));
+		model.addAttribute("question", questionService.findOne(id));
 		model.addAttribute("categories", categoryService.findAll());
 		return "addEditQuestion";
 	}
@@ -123,7 +123,7 @@ public class QuestionController {
 			return "redirect:questions";
 		} else {
 			model.addAttribute("question", question);
-			model.addAttribute("cateogries", categoryService.findAll());
+			model.addAttribute("categories", categoryService.findAll());
 			return "addEditQuestion";
 		}
 		

@@ -1,11 +1,16 @@
 package com.levi9.code9.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 /**
  * @author s.racicberic
  *
  */
+@Entity
+@Table(name = "category")
 public class Category extends AbstractBaseEntity {
 	
 	/**
@@ -17,6 +22,7 @@ public class Category extends AbstractBaseEntity {
 	 * Category name
 	 */
 	@Pattern(regexp = "^(?=\\s*\\S).*$")
+	@Column(nullable = false, length = 255)
 	private String name;
 	
 	/**

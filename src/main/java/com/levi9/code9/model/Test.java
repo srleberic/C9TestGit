@@ -1,15 +1,23 @@
 package com.levi9.code9.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 /**
  * @author Srle
  *
  */
+@Entity
+@Table(name = "test")
 public class Test extends AbstractBaseEntity {
 
 	/**
@@ -17,18 +25,23 @@ public class Test extends AbstractBaseEntity {
 	 */
 	private static final long serialVersionUID = -707161561380217235L;
 	
+	@Column(nullable = false, length = 255)
 	@Pattern(regexp = "^(?=\\s*\\S).*$")
 	private String name;
 	
+	@Column(name = "create_date", nullable = false, length = 255)
 	private Date createDate;
 	
+	@Column(name = "created_by", nullable = false, length = 255)
 	@Pattern(regexp = "^(?=\\s*\\S).*$")
 	private String createdBy;
 	
-	private List<Question> questions;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "test_questions")
+	private Set<Question> questions;
 	
 	public Test() {
-		questions = new ArrayList<>();
+		questions = new HashSet<>();
 		createDate = new Date();
 	}
 
@@ -77,14 +90,14 @@ public class Test extends AbstractBaseEntity {
 	/**
 	 * @return the questions
 	 */
-	public List<Question> getQuestions() {
+	public Set<Question> getQuestions() {
 		return questions;
 	}
 
 	/**
 	 * @param questions the questions to set
 	 */
-	public void setQuestions(List<Question> questions) {
+	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
 	

@@ -5,6 +5,7 @@ package com.levi9.code9.service;
 
 import java.util.List;
 
+import com.levi9.code9.model.Category;
 import com.levi9.code9.model.Question;
 
 /**
@@ -17,7 +18,7 @@ public interface QuestionService extends CrudService<Question> {
 	 * @param categoryId
 	 * @return
 	 */
-	List<Question> findByCategoryId(Long categoryId);
+	List<Question> findByCategory(Category category);
 	
 	/**
 	 * @param question

@@ -45,7 +45,7 @@ public class TestController {
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String getEdit(@PathVariable Long id, Model model) {
-		model.addAttribute("test", testService.findById(id));
+		model.addAttribute("test", testService.findOne(id));
 		return "addEditTest";
 	}
 	
@@ -74,7 +74,7 @@ public class TestController {
 	
 	@RequestMapping(value = "/editQuestions/{id}", method = RequestMethod.GET)
 	public String getAddRemoveQuestions(@PathVariable Long id, Model model) {
-		Test test = testService.findById(id);
+		Test test = testService.findOne(id);
 		List<Question> nonAssignedQuestions = questionService.findAll();
 		nonAssignedQuestions.removeAll(test.getQuestions());
 		List<Question> assignedQuestions = new ArrayList<>();
@@ -89,8 +89,8 @@ public class TestController {
 	public String addQuestion(@RequestParam Long testId, 
 			@RequestParam(value = "nonAssignedQuestions", required = false, defaultValue = "-1") Long questionId, 
 			Model model) {
-		Question question = questionService.findById(questionId);
-		Test test = testService.findById(testId);
+		Question question = questionService.findOne(questionId);
+		Test test = testService.findOne(testId);
 		if (question != null) {
 			test.addQuestion(question);
 			testService.save(test);
@@ -111,8 +111,8 @@ public class TestController {
 	public String removeQuestion(@RequestParam Long testId, 
 			@RequestParam(value = "assignedQuestions", required = false, defaultValue = "-1") Long questionId, 
 			Model model) {
-		Question question = questionService.findById(questionId);
-		Test test = testService.findById(testId);
+		Question question = questionService.findOne(questionId);
+		Test test = testService.findOne(testId);
 		if (question != null) {
 			test.removeQuestion(question);
 			testService.save(test);

@@ -30,7 +30,7 @@ public class InMemoryTestServiceTest {
 	public void testAddAnswer() {
 		Question q = new Question();
 		q.setId(1L);
-		Test t = service.findById(1L);
+		Test t = service.findOne(1L);
 
 		Assert.assertNotNull(t.getQuestions());
 		Assert.assertTrue(t.getQuestions().size() == 0);
@@ -39,19 +39,21 @@ public class InMemoryTestServiceTest {
 
 		Assert.assertNotNull(t.getQuestions());
 		Assert.assertTrue(t.getQuestions().size() == 1);
-		Assert.assertNotNull(t.getQuestions().get(0));
+		Assert.assertTrue(t.getQuestions().iterator().hasNext() 
+				&& t.getQuestions().iterator().next() != null);
 	}
 	
 	@org.junit.Test
 	public void testRemoveAnswer() {
 		Question q = new Question();
 		q.setId(1L);
-		Test t = service.findById(1L);
+		Test t = service.findOne(1L);
 		t.addQuestion(q);
 
 		Assert.assertNotNull(t.getQuestions());
 		Assert.assertTrue(t.getQuestions().size() == 1);
-		Assert.assertNotNull(t.getQuestions().get(0));
+		Assert.assertTrue(t.getQuestions().iterator().hasNext() 
+				&& t.getQuestions().iterator().next() != null);
 
 		t.removeQuestion(q);
 

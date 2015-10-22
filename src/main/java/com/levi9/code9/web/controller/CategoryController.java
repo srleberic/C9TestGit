@@ -37,7 +37,7 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String getEdit(@PathVariable Long id, Model model) {
-		model.addAttribute("category", categoryService.findById(id));
+		model.addAttribute("category", categoryService.findOne(id));
 		return "addEditCategory";
 	}
 	

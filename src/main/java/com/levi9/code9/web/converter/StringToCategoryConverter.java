@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.levi9.code9.web.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,7 @@ public class StringToCategoryConverter implements Converter<String, Category> {
 	 */
 	@Override
 	public Category convert(String categoryId) {
-		return categoryService.findById(Long.parseLong(categoryId));
+		return categoryService.findOne(Long.parseLong(categoryId));
 	}
 	
 }

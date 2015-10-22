@@ -32,7 +32,6 @@
 		<br />
 		<c:if test="${fn:length(question.answers) gt 0}">
 			<c:forEach begin="0" end="${fn:length(question.answers)-1}" varStatus="status">
-				<form:hidden path="answers[${status.index}].id" />
 				<form:input path="answers[${status.index}].content" cssErrorClass="error"/>
 				<form:label path="answers[${status.index}].correct">
 					<fmt:message key="page.addEditQuestion.label.answers.correct" />
@@ -41,7 +40,7 @@
 				<c:if test="${status.end gt 0}">
 					<div class="highlightcolorBlack">
 						<button type="submit" name="removeAnswer" 
-							value="${question.answers[status.index].id}" class="button">
+							value="${status.index}" class="button">
 							<fmt:message key="page.addEditQuestion.action.removeAnswer" />
 						</button>
 					</div>

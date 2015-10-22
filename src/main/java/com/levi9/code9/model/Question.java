@@ -6,6 +6,15 @@ package com.levi9.code9.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -13,6 +22,8 @@ import javax.validation.constraints.Pattern;
  * @author s.racicberic
  *
  */
+@Entity
+@Table(name = "question")
 public class Question extends AbstractBaseEntity {
 
 	/**
@@ -23,22 +34,27 @@ public class Question extends AbstractBaseEntity {
 	/**
 	 * Content of the question
 	 */
+	@Column(nullable = false, length = 255)
 	@Pattern(regexp = "^(?=\\s*\\S).*$")
 	private String content;
 	
 	/**
 	 * Category of the question
 	 */
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "category_id", nullable = true)
 	private Category category;
 	
 	/**
 	 * list of possible answers
 	 */
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "question_answer", joinColumns = @JoinColumn(name = "question_id"))
+	@OrderColumn(name = "nbr")
 	@Valid
 	private List<Answer> answers;
 	
 	public Question() {
-		super();
 		answers = new ArrayList<>();
 	}
 

@@ -52,7 +52,7 @@ public class AbstractInMemoryServiceTest {
 	
 	@Test
 	public void testFindById() {
-		NamedEntity ent = service.findById(1L);
+		NamedEntity ent = service.findOne(1L);
 		Assert.assertNotNull(ent);
 		Assert.assertEquals("Java", ent.name);
 	}
@@ -78,23 +78,23 @@ public class AbstractInMemoryServiceTest {
 		e.name = "C#";
 		NamedEntity saved = service.save(e);
 		Assert.assertNotNull(saved.getId());
-		Assert.assertEquals("C#", service.findById(saved.getId()).name);
+		Assert.assertEquals("C#", service.findOne(saved.getId()).name);
 	}
 	
 	@Test
 	public void testRemove() {
-		Assert.assertNotNull(service.findById(1L));
-		Assert.assertNotNull(service.findById(2L));
+		Assert.assertNotNull(service.findOne(1L));
+		Assert.assertNotNull(service.findOne(2L));
 
 		service.remove(1L);
 
-		Assert.assertNull(service.findById(1L));
-		Assert.assertNotNull(service.findById(2L));
+		Assert.assertNull(service.findOne(1L));
+		Assert.assertNotNull(service.findOne(2L));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testRemoveIllegalArg() {
-		Assert.assertNull(service.findById(3L));
+		Assert.assertNull(service.findOne(3L));
 		service.remove(3L);
 	}
 

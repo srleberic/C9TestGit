@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.levi9.code9.model.Answer;
+import com.levi9.code9.model.Category;
 import com.levi9.code9.model.Question;
 import com.levi9.code9.service.QuestionService;
 
@@ -18,11 +19,11 @@ public class InMemoryQuestionService extends AbstractInMemoryService<Question>
 		implements QuestionService {
 
 	@Override
-	public List<Question> findByCategoryId(Long categoryId) {
+	public List<Question> findByCategory(Category category) {
 		List<Question> res = new ArrayList<>();
 		for (Question q : findAll()) {
 			if (q.getCategory() != null 
-					&& q.getCategory().getId().equals(categoryId)){
+					&& q.getCategory().getId().equals(category.getId())){
 				res.add(q);
 			}
 		}
@@ -32,10 +33,10 @@ public class InMemoryQuestionService extends AbstractInMemoryService<Question>
 	@Override
 	public void addAnswer(Question question) {
 		Answer answer = new Answer();
-		if (question.getAnswers() == null) {
+		/*if (question.getAnswers() == null) {
 			question.setAnswers(new ArrayList<Answer>());
 		}
-		answer.setId(new Long(question.getAnswers().size()));
+		answer.setId(new Long(question.getAnswers().size()));*/
 		question.getAnswers().add(answer);
 	}
 

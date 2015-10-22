@@ -11,9 +11,7 @@ import org.junit.Test;
 
 import com.levi9.code9.model.Category;
 import com.levi9.code9.model.Question;
-import com.levi9.code9.service.CategoryService;
 import com.levi9.code9.service.QuestionService;
-import com.levi9.code9.service.memory.InMemoryCategoryService;
 
 /**
  * @author s.racicberic
@@ -65,20 +63,60 @@ public class InMemoryQuestionServiceTest {
 
 	@Test
 	public void testFindByCategoryId() {
-		List<Question> questions = service.findByCategoryId(1L);
+		Category cat = new Category();
+		cat.setId(1L);
+		List<Question> questions = service.findByCategory(cat);
 		
 		Assert.assertNotNull(questions);
 		Assert.assertTrue(questions.size() == 2);
 
-		questions = service.findByCategoryId(2L);
+		cat.setId(2L);
+		questions = service.findByCategory(cat);
 
 		Assert.assertNotNull(questions);
 		Assert.assertTrue(questions.size() == 2);
 		
-		questions = service.findByCategoryId(3L);
+		cat.setId(3L);
+		questions = service.findByCategory(cat);
 
 		Assert.assertNotNull(questions);
 		Assert.assertTrue(questions.size() == 0);
+	}
+	
+	@Test
+	public void testAddAnswer() {
+		Question q = service.findOne(1L);
+		
+		Assert.assertNotNull(q.getAnswers());
+		Assert.assertTrue(q.getAnswers().size() == 0);
+		
+		service.addAnswer(q);
+		
+		Assert.assertNotNull(q.getAnswers());
+		Assert.assertTrue(q.getAnswers().size() == 1);
+		Assert.assertNotNull(q.getAnswers().get(0));
+	}
+	
+	@Test
+	public void testRemoveAnswer() {
+		Question q = service.findOne(1L);
+		service.addAnswer(q);
+
+		Assert.assertNotNull(q.getAnswers());
+		Assert.assertTrue(q.getAnswers().size() == 1);
+		Assert.assertNotNull(q.getAnswers().get(0));
+
+		service.removeAnswer(q, 0L);
+
+		Assert.assertNotNull(q.getAnswers());
+		Assert.assertTrue(q.getAnswers().size() == 0);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testRemoveAnswerIllegalArgument() {
+		Question q = service.findOne(1L);
+		Assert.assertTrue(q.getAnswers().size() < 1);
+		service.removeAnswer(q, 0L);
 	}
 
 }

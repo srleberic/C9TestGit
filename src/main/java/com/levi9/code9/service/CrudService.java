@@ -15,7 +15,7 @@ public interface CrudService <T extends AbstractBaseEntity> {
 	 * @param id
 	 * @return
 	 */
-	T findById(Long id);
+	T findOne(Long id);
 	
 	/**
 	 * @return list of existing entities

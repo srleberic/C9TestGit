@@ -28,7 +28,7 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
 	 * @see com.levi9.code9.service.CrudService#findById(java.lang.Long)
 	 */
 	@Override
-	public T findById(Long id) {
+	public T findOne(Long id) {
 		return map.get(id);
 	}
 

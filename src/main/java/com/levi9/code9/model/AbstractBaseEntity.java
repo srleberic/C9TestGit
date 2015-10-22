@@ -5,18 +5,25 @@ package com.levi9.code9.model;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
 /**
  * @author s.racicberic
  *
  * Base entity class
  */
-public class AbstractBaseEntity implements Serializable {
+@MappedSuperclass
+public abstract class AbstractBaseEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1632673871335373221L;
 	
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	
