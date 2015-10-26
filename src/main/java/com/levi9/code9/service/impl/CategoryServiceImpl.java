@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.levi9.code9.model.Category;
@@ -38,12 +39,14 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Category save(Category category) {
 		return categoryRepository.save(category);
 	}
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void remove(Long id) throws IllegalArgumentException {
 		Category category = categoryRepository.findOne(id);
 		if (category == null) {

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.levi9.code9.model.Test;
@@ -45,6 +46,7 @@ public class TestServiceImpl implements TestService {
 	 */
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Test save(Test test) {
 		return testRepository.save(test);
 	}
@@ -53,6 +55,7 @@ public class TestServiceImpl implements TestService {
 	 * @see com.levi9.code9.service.CrudService#remove(java.lang.Long)
 	 */
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void remove(Long id) throws IllegalArgumentException {
 		Test test = testRepository.findOne(id);
 		if (test == null) {

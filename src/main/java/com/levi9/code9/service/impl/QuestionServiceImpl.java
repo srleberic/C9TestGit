@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.levi9.code9.model.Answer;
@@ -36,12 +37,14 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Question save(Question question) {
 		return questionRepository.save(question);
 	}
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void remove(Long id) throws IllegalArgumentException {
 		Question question = questionRepository.findOne(id);
 		if (question == null) {
@@ -63,12 +66,14 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void addAnswer(Question question) {
 		Answer answer = new Answer();
 		question.getAnswers().add(answer);
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void removeAnswer(Question question, Long answerId)
 			throws IllegalArgumentException {
 		System.out.println(answerId);
