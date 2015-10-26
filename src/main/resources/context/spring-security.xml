@@ -9,7 +9,7 @@
 	<http pattern="/css/**" security="none"/>
 	<http pattern="/js/**" security="none"/>
 	
-	<http auto-config="true" use-expressions="false">
+	<http auto-config="true">
 		<intercept-url pattern="/home" access="ROLE_USER, ROLE_ADMIN" />
 		<intercept-url pattern="/tests" access="ROLE_USER, ROLE_ADMIN" />
 		<intercept-url pattern="/**" access="ROLE_ADMIN" />
@@ -25,5 +25,8 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<beans:bean id="webexpressionHandler" 
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 		
 </beans:beans>

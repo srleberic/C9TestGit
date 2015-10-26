@@ -24,21 +24,25 @@
 				<td><c:out value="${test.name}" /></td>
 				<td><spring:eval expression="test.createDate" /></td>
 				<td><c:out value="${test.createdBy}" /></td>
-				<td class="highlightcolorBlack"><a
-					href="<c:url value="/tests/editQuestions/${test.id}"/>"
-					class="button"><fmt:message
-							key="page.tests.action.addRemoveQuestions" /></a></td>
-				<td class="highlightcolorBlack"><a
-					href="<c:url value="/tests/edit/${test.id}"/>" class="button"><fmt:message
-							key="common.action.edit" /></a></td>
-				<td class="highlightcolorBlack"><a
-					href="<c:url value="/tests/remove/${test.id}"/>" class="button"><fmt:message
-							key="common.action.remove" /></a></td>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<td class="highlightcolorBlack"><a
+						href="<c:url value="/tests/editQuestions/${test.id}"/>"
+						class="button"><fmt:message
+								key="page.tests.action.addRemoveQuestions" /></a></td>
+					<td class="highlightcolorBlack"><a
+						href="<c:url value="/tests/edit/${test.id}"/>" class="button"><fmt:message
+								key="common.action.edit" /></a></td>
+					<td class="highlightcolorBlack"><a
+						href="<c:url value="/tests/remove/${test.id}"/>" class="button"><fmt:message
+								key="common.action.remove" /></a></td>
+				</sec:authorize>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 <div>
-	<a href="<c:url value="/tests/new"/>" class="button"><fmt:message
-			key="page.tests.action.addNewTest" /></a>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="<c:url value="/tests/new"/>" class="button"><fmt:message
+				key="page.tests.action.addNewTest" /></a>
+	</sec:authorize>
 </div>
